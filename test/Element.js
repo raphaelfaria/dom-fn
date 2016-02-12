@@ -51,4 +51,14 @@ describe('Element', function() {
     expect(compiledElm.childNodes.length).to.be.equal(1);
     expect(compiledElm.childNodes[0].textContent).to.contain('Child');
   });
+
+  it('should be able to use variables', function() {
+    const elm = new Element('div', { class: 'test' }, function(attr) {
+      return attr.value;
+    });
+
+    const compiledElm = elm.compile({ value: 'Variable test' });
+
+    expect(compiledElm.childNodes[0].textContent).to.contain('Variable test');
+  });
 });
