@@ -1,0 +1,30 @@
+{
+  "name": "dom",
+  "version": "0.0.1",
+  "description": "Simple dom builder",
+  "main": "dist/dom.js",
+  "scripts": {
+    "prepublish": "gulp prepublish",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.5.1",
+    "babel-preset-es2015": "^6.5.0",
+    "chai": "^3.5.0",
+    "chai-spies": "^0.7.1",
+    "del": "^2.0.2",
+    "gulp": "^3.6.0",
+    "gulp-babel": "^6.1.2",
+    "gulp-eslint": "^1.0.0",
+    "gulp-exclude-gitignore": "^1.0.0",
+    "gulp-istanbul": "^0.9.0",
+    "gulp-mocha": "^2.2.0",
+    "gulp-nsp": "^2.3.0",
+    "gulp-plumber": "^1.1.0",
+    "isparta": "^3.0.3",
+    "jsdom": "8.0.2",
+    "jsdom-global": "1.6.1",
+  }
+}
