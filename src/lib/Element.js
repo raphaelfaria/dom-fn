@@ -54,15 +54,25 @@ export default class Element {
     }
 
     if (Array.isArray(children)) {
-      return children.forEach(function loopChildren(child) {
+      return children.reduce(function loopChildren(element, child) {
+        let append;
+
         if (child instanceof Element) {
-          return child.compile(props);
+          append = child.compile(props);
         }
 
-        if (typeof child === 'string' || child instanceof String) {
-
+        if (isString(child)) {
+          append = doc.createTextNode(child);
         }
-      });
+
+        element.appendChild(append);
+
+        return element;
+      }, elm);
+    }
+
+    if (isString(children)) {
+      elm.appendChild(doc.createTextNode(children));
     }
 
     return elm;

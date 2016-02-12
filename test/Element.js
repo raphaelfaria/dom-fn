@@ -43,4 +43,12 @@ describe('Element', function() {
 
     expect(spy).to.have.been.called.once;
   });
+
+  it('should add children to main node', function() {
+    const elm = new Element('div', { class: 'test' }, 'Child');
+    const compiledElm = elm.compile();
+
+    expect(compiledElm.childNodes.length).to.be.equal(1);
+    expect(compiledElm.childNodes[0].textContent).to.contain('Child');
+  });
 });
