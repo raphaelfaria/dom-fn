@@ -1,8 +1,19 @@
 import Element from './Element';
 import { idClassParser } from '../helpers/idClassParser';
-import { isString } from '../helpers/type';
+import { isString, isArray, isFunction } from '../helpers/type';
 
 export function el(tagName = 'div', attr = {}, children = '') {
+  if (isArray(tagName) || isFunction(tagName)) {
+    children = tagName;
+    tagName = 'div';
+    attr = {};
+  }
+
+  if (isArray(attr) || isFunction(attr)) {
+    children = attr;
+    attr = {};
+  }
+
   let attributes = attr;
 
   if (isString(attr)) {

@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { getId, getClass, idClassParser } from '../src/helpers/idClassParser';
 
 describe('idClassParser', function () {
-  it('should get the id', function() {
+  it('should get the id', function () {
     const ids = '#id1';
 
     expect(getId(ids)).to.be.equal('id1');

@@ -4,7 +4,7 @@ import Element from '../src/lib/Element';
 
 chai.use(spies);
 
-describe('Element', function() {
+describe('Element', function () {
   this.timeout(5000);
   let jsdom;
 
@@ -16,7 +16,7 @@ describe('Element', function() {
     jsdom();
   });
 
-  it('should construct properly', function() {
+  it('should construct properly', function () {
     const elm = new Element('div', { class: 'test' }, 'Child');
 
     expect(elm).to.be.instanceof(Element);
@@ -25,7 +25,7 @@ describe('Element', function() {
     expect(elm.children).to.be.a('string');
   });
 
-  it('should compile to a DOM element', function() {
+  it('should compile to a DOM element', function () {
     const elm = new Element('div', { class: 'test' }, 'Child');
 
     const domElm = elm.compile();
@@ -33,7 +33,7 @@ describe('Element', function() {
     expect(domElm.nodeName).to.be.equal('DIV');
   });
 
-  it('should call compile in all children', function() {
+  it('should call compile in all children', function () {
     const child = new Element('div', { class: 'child' }, 'Child');
     const elm = new Element('div', { class: 'test' }, [child]);
 
@@ -44,7 +44,7 @@ describe('Element', function() {
     expect(spy).to.have.been.called.once;
   });
 
-  it('should add children to main node', function() {
+  it('should add children to main node', function () {
     const elm = new Element('div', { class: 'test' }, 'Child');
     const compiledElm = elm.compile();
 
@@ -52,7 +52,7 @@ describe('Element', function() {
     expect(compiledElm.childNodes[0].textContent).to.contain('Child');
   });
 
-  it('should be able to use variables', function() {
+  it('should be able to use variables', function () {
     const elm = new Element('div', { class: 'test' }, function(attr) {
       return attr.value;
     });
@@ -62,7 +62,7 @@ describe('Element', function() {
     expect(compiledElm.childNodes[0].textContent).to.contain('Variable test');
   });
 
-  it('should be able to use numbers in variables', function() {
+  it('should be able to use numbers in variables', function () {
     const elm = new Element('div', { class: 'test' }, function(attr) {
       return attr.value;
     });
