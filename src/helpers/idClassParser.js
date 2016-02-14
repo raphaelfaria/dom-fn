@@ -13,7 +13,7 @@ function verifySelector(selector) {
 
 function getMatches(selector, regex) {
   let match;
-  let matches = [];
+  const matches = [];
 
   while (match = regex.exec(selector)) {
     matches.push(match[1]);
@@ -35,17 +35,17 @@ export function getClass(selector) {
 }
 
 export function idClassParser(selector) {
-  let idClass = {};
+  const idClass = {};
 
   const id = getId(selector);
   const classes = getClass(selector);
 
   if (id) {
-    idClass['id'] = id;
+    idClass.id = id;
   }
 
   if (classes.length) {
-    idClass['class'] = classes.join(' ');
+    idClass.class = classes.join(' ');
   }
 
   return idClass;

@@ -4,12 +4,11 @@ import { isString } from '../helpers/type';
 const svgxlink = 'http://www.w3.org/1999/xlink';
 
 function createElm(tag, ns, attrs, doc) {
-  let elm = doc.createElementNS(ns, tag);
+  const elm = doc.createElementNS(ns, tag);
 
-  for (let i in attrs) {
-    let val = attrs[i];
-    if (attrs.hasOwnProperty(i) && isString(val)) {
-      elm.setAttribute(i, val);
+  for (const i in attrs) {
+    if (attrs.hasOwnProperty(i) && isString(attrs[i])) {
+      elm.setAttribute(i, attrs[i]);
     }
   }
 
@@ -51,7 +50,7 @@ export default class Element {
     }
 
     if (Array.isArray(children)) {
-      return children.reduce(function loopChildren(element, child) {
+      return children.reduce((element, child) => {
         let append;
 
         if (child instanceof Element) {
