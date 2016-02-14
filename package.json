@@ -1,8 +1,8 @@
 {
-  "name": "dom",
+  "name": "dom.fn",
   "version": "0.0.1",
   "description": "Simple dom builder",
-  "main": "dist/dom.js",
+  "main": "dist/dom.fn.js",
   "scripts": {
     "prepublish": "gulp prepublish",
     "test": "echo \"Error: no test specified\" && exit 1"
