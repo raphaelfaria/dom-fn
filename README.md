@@ -1,4 +1,4 @@
-# domFN
+# domFn
 
 A very simple functional DOM builder kinda inspired by cycle.js DOM Driver and virtual-dom way.
 
@@ -33,7 +33,7 @@ var element = el('div', '.someClass', function(arg) {
 	if (arg.test > 10) {
 		return 'The number is: ' + arg.test;
 	}
-	
+
 	return 'The number is lower than 10';
 });
 ```
