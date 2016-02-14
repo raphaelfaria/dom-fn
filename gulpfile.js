@@ -54,13 +54,13 @@ gulp.task('test', function (cb) {
     });
 });
 
-gulp.task('browserify', function () {
+gulp.task('build', ['clean-build'], function () {
   return browserify(['./src/dom-fn.js'], { standalone: 'domFn' })
     .transform(babelify)
     .bundle()
-    .pipe(source('dom-fn.umd.js'))
+    .pipe(source('dom-fn.js'))
     .pipe(derequire())
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('build'));
 });
 
 gulp.task('babel', ['clean'], function () {
@@ -71,6 +71,10 @@ gulp.task('babel', ['clean'], function () {
 
 gulp.task('clean', function () {
   return del('dist');
+});
+
+gulp.task('clean-build', function () {
+  return del('build');
 });
 
 gulp.task('prepublish', ['nsp', 'babel']);
