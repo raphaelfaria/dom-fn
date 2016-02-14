@@ -1,10 +1,7 @@
 import namespaces from '../config/namespaces';
+import { isString } from '../helpers/type';
 
 const svgxlink = 'http://www.w3.org/1999/xlink';
-
-function isString(str) {
-  return typeof str === 'string' || str instanceof String;
-}
 
 function createElm(tag, ns, attrs, doc) {
   let elm = doc.createElementNS(ns, tag);
