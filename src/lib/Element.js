@@ -67,7 +67,7 @@ export default class Element {
       }, elm);
     }
 
-    if (isString(children)) {
+    if (isString(children) || typeof children === 'number') {
       elm.appendChild(doc.createTextNode(children));
     }
 

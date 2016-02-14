@@ -61,4 +61,14 @@ describe('Element', function() {
 
     expect(compiledElm.childNodes[0].textContent).to.contain('Variable test');
   });
+
+  it('should be able to use numbers in variables', function() {
+    const elm = new Element('div', { class: 'test' }, function(attr) {
+      return attr.value;
+    });
+
+    const compiledElm = elm.compile({ value: 10 });
+
+    expect(compiledElm.childNodes[0].textContent).to.contain('10');
+  });
 });
