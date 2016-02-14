@@ -7,6 +7,10 @@ var nsp = require('gulp-nsp');
 var plumber = require('gulp-plumber');
 var babel = require('gulp-babel');
 var del = require('del');
+var browserify = require('browserify');
+var babelify = require('babelify');
+var source = require('vinyl-source-stream');
+var derequire = require('gulp-derequire');
 
 // Initialize the babel transpiler so ES2015 files gets compiled
 // when they're loaded
@@ -48,6 +52,15 @@ gulp.task('test', function (cb) {
     .on('end', function () {
       cb(mochaErr);
     });
+});
+
+gulp.task('browserify', function () {
+  return browserify(['./src/domFn.js'], { standalone: 'domFn' })
+    .transform(babelify)
+    .bundle()
+    .pipe(source('domFn.umd.js'))
+    .pipe(derequire())
+    .pipe(gulp.dest('dist'));
 });
 
 gulp.task('babel', ['clean'], function () {
