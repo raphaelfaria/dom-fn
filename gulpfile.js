@@ -9,8 +9,20 @@ var babel = require('gulp-babel');
 var del = require('del');
 var browserify = require('browserify');
 var babelify = require('babelify');
+var buffer = require("vinyl-buffer");
 var source = require('vinyl-source-stream');
 var derequire = require('gulp-derequire');
+var header = require('gulp-header');
+
+var pkg = require('./package.json');
+var banner = [
+  '// <%= pkg.name %> - <%= pkg.description %>',
+  '// Copyright 2016 <%= pkg.author %>',
+  '// @version v<%= pkg.version %>',
+  '// @license <%= pkg.license %>',
+  '// https://github.com/raphaelfaria/dom-fn',
+  '',
+].join('\n');
 
 // Initialize the babel transpiler so ES2015 files gets compiled
 // when they're loaded
@@ -33,7 +45,7 @@ gulp.task('lint', function () {
 });
 
 gulp.task('nsp', function (cb) {
-  nsp({package: path.resolve('package.json')}, cb);
+  nsp({ package: path.resolve('package.json') }, cb);
 });
 
 gulp.task('test', function (cb) {
@@ -60,6 +72,8 @@ gulp.task('build', ['clean-build'], function () {
     .bundle()
     .pipe(source('dom-fn.js'))
     .pipe(derequire())
+    .pipe(buffer())
+    .pipe(header(banner, { pkg: pkg }))
     .pipe(gulp.dest('build'));
 });
 
