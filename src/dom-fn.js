@@ -4,4 +4,4 @@ const domFn = {
   el,
 };
 
-export default domFn;
+module.exports = domFn;
