@@ -25,6 +25,6 @@
     "gulp-plumber": "^1.1.0",
     "isparta": "^3.0.3",
     "jsdom": "8.0.2",
-    "jsdom-global": "1.6.1",
+    "jsdom-global": "1.6.1"
   }
 }
