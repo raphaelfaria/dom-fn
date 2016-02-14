@@ -88,9 +88,30 @@ function idClassParser(selector) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
 exports.isString = isString;
+exports.isArray = isArray;
+exports.isFunction = isFunction;
 function isString(str) {
   return typeof str === 'string' || str instanceof String;
+}
+
+function isArray(obj) {
+  if (Array.isArray) {
+    return Array.isArray(obj);
+  }
+
+  return Object.prototype.toString.call(obj) === '[object Array]';
+}
+
+function isFunction(obj) {
+  if (typeof /./ !== 'function' && (typeof Int8Array === 'undefined' ? 'undefined' : _typeof(Int8Array)) !== 'object') {
+    return typeof obj === 'function' || false;
+  }
+
+  return Object.prototype.toString.call(obj) === '[object Function]';
 }
 
 },{}],5:[function(_dereq_,module,exports){
@@ -221,6 +242,17 @@ function el() {
   var tagName = arguments.length <= 0 || arguments[0] === undefined ? 'div' : arguments[0];
   var attr = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
   var children = arguments.length <= 2 || arguments[2] === undefined ? '' : arguments[2];
+
+  if ((0, _type.isArray)(tagName) || (0, _type.isFunction)(tagName)) {
+    children = tagName;
+    tagName = 'div';
+    attr = {};
+  }
+
+  if ((0, _type.isArray)(attr) || (0, _type.isFunction)(attr)) {
+    children = attr;
+    attr = {};
+  }
 
   var attributes = attr;
 
