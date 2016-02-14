@@ -55,10 +55,10 @@ gulp.task('test', function (cb) {
 });
 
 gulp.task('browserify', function () {
-  return browserify(['./src/domFn.js'], { standalone: 'domFn' })
+  return browserify(['./src/dom-fn.js'], { standalone: 'domFn' })
     .transform(babelify)
     .bundle()
-    .pipe(source('domFn.umd.js'))
+    .pipe(source('dom-fn.umd.js'))
     .pipe(derequire())
     .pipe(gulp.dest('dist'));
 });
