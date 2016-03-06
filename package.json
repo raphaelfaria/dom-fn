@@ -1,6 +1,6 @@
 {
   "name": "dom-fn",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Pretty simple functional dom builder",
   "main": "dist/dom-fn.js",
   "scripts": {
