@@ -4,7 +4,7 @@
     "strict": 0,
     "quotes": [2, "single"],
     "func-names": 0,
-    "space-before-function-paren": [2, { "anonymous": "never", "named": "never" }],
+    "space-before-function-paren": [2, { "anonymous": "always", "named": "never" }],
   },
   "env": {
     "browser": true,

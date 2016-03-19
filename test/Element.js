@@ -71,4 +71,16 @@ describe('Element', function () {
 
     expect(compiledElm.childNodes[0].textContent).to.contain('10');
   });
+
+  it('should be able to add numbers as props (transformed into strings)', function () {
+    const elm = new Element('div', { 'data-bind': 10 });
+
+    const compiledElm = elm.compile();
+
+    expect(compiledElm.attributes['data-bind'].value).to.be.equal('10');
+  });
+
+  it('should not allow NaN or Infinity as props', function () {
+    expect(() => (new Element('div', { 'data-bind': NaN }).compile())).to.throw(Error);
+  });
 });

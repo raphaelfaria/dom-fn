@@ -1,5 +1,5 @@
 import namespaces from '../config/namespaces';
-import { isString } from '../helpers/type';
+import { isString, isNumber } from '../helpers/type';
 
 const svgxlink = 'http://www.w3.org/1999/xlink';
 
@@ -7,9 +7,15 @@ function createElm(tag, ns, attrs, doc) {
   const elm = doc.createElementNS(ns, tag);
 
   for (const i in attrs) {
-    if (attrs.hasOwnProperty(i) && isString(attrs[i])) {
-      elm.setAttribute(i, attrs[i]);
+    if (!attrs.hasOwnProperty(i)) {
+      continue;
     }
+
+    if (!isString(attrs[i]) && !isNumber(attrs[i])) {
+      throw new Error('Attribute value must be number or string');
+    }
+
+    elm.setAttribute(i, attrs[i]);
   }
 
   return elm;
@@ -46,7 +52,7 @@ export default class Element {
     let children = this.children;
 
     if (typeof children === 'function') {
-      children = children(props);
+      children = children.call(elm, props);
     }
 
     if (Array.isArray(children)) {
